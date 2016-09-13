@@ -2,27 +2,37 @@
     internal class Translator {
         public string Translate(string s) {
             string result = "";
-            string IsVowel = "aeioyAEIOY"; //mangler QU untagelsen så derfor ikke "u" her enddu
+            string IsVowel = "aeiouyAEIOUY";
+            //QU exception's
+            string exception = "qu";
 
             //for each word in string
             foreach (string word in s.Split(' ')) {
                 //temporary word
                 string tempWord = word;
                 bool cap = false;
-
+                
+                //test if capitalized
                 char tempChar = tempWord[0]; //get first letter
-                //test if capitalize
                 if (tempChar == char.ToUpper(tempChar)) {
-                    //remember
+                    //remember that it was capitalized word
                     cap = true;
                     //remove capitalize 
                     tempWord = tempWord.ToLower();
                 }
-                
+
                 //while word doesn't start on vowel
-                while (IsVowel.IndexOf(tempWord.Substring(0, 1)) < 0) { 
-                    tempWord += tempWord[0]; //add first letter to the end
-                    tempWord = tempWord.Substring(1); //remove first letter
+                while (IsVowel.IndexOf(tempWord.Substring(0, 1)) < 0) {
+                    //if next to chars is "qu"
+                    if (exception == tempWord.Substring(0, 2)) {
+                        //add 1st and 2th letter to the end (aprently not in i sentance ??)
+                        tempWord += tempWord[0]; 
+                        tempWord += tempWord[1];
+                        tempWord = tempWord.Substring(2); //remove two first letters
+                    } else { //non "qu"
+                        tempWord += tempWord[0]; //add 1st letter to the end
+                        tempWord = tempWord.Substring(1); //remove first letter
+                    }
                 }
 
                 //if word was captalized
@@ -33,16 +43,14 @@
                     tempWord = tempChar + tempWord; //insert capitalized start letter
                 }
 
-                //add "ay" når der ik er flere konsonanter i starten af ordet
+                //add "ay" when there is a vowel starting letter
                 tempWord += "ay";
                 //add word and a space to final result 
                 result += tempWord + ' ';
             }
 
             //capitalize first + remove exess spaces
-            result = result.TrimEnd();
-
-            return result;
+            return result.TrimEnd();
         }
     }
 }

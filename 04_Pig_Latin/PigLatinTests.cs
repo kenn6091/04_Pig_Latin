@@ -1,11 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace _04_Pig_Latin
-{
+namespace _04_Pig_Latin {
     [TestClass]
-    public class PigLatinTests
-    {
+    public class PigLatinTests {
         //Pig Latin
 
         //Pig Latin is a made-up children's language that's intended to be confusing. It obeys a few simple rules (below) but when it's spoken quickly
@@ -16,56 +14,47 @@ namespace _04_Pig_Latin
         //See <http://en.wikipedia.org/wiki/Pig_latin> for more details.
 
         [TestMethod]
-        public void TranslateWordBeginningWithAVowel()
-        {
+        public void TranslateWordBeginningWithAVowel() {
             Translator translator = new Translator();
             Assert.AreEqual("appleay", translator.Translate("apple"));
         }
         [TestMethod]
-        public void TranslateWordBeginningWithAConsonant()
-        {
+        public void TranslateWordBeginningWithAConsonant() {
             Translator translator = new Translator();
             Assert.AreEqual("ananabay", translator.Translate("banana"));
         }
         [TestMethod]
-        public void TranslateWordBeginningWithTwoConsonants()
-        {
+        public void TranslateWordBeginningWithTwoConsonants() {
             Translator translator = new Translator();
             Assert.AreEqual("errychay", translator.Translate("cherry"));
         }
         [TestMethod]
-        public void TranslateTwoWords()
-        {
+        public void TranslateTwoWords() {
             Translator translator = new Translator();
             Assert.AreEqual("eatay iepay", translator.Translate("eat pie"));
         }
         [TestMethod]
-        public void TranslateWordBeginningWithThreeConsonants()
-        {
+        public void TranslateWordBeginningWithThreeConsonants() {
             Translator translator = new Translator();
             Assert.AreEqual("eethray", translator.Translate("three"));
         }
         [TestMethod]
-        public void Count_SCH_AsASinglePhoneme()
-        {
+        public void Count_SCH_AsASinglePhoneme() {
             Translator translator = new Translator();
             Assert.AreEqual("oolschay", translator.Translate("school"));
         }
         [TestMethod]
-        public void Count_QU_AsASinglePhoneme()
-        {
+        public void Count_QU_AsASinglePhoneme() {
             Translator translator = new Translator();
             Assert.AreEqual("ietquay", translator.Translate("quiet"));
         }
         [TestMethod]
-        public void Count_QU_AsAConsonantEvenWhenPreceededByAConsonant()
-        {
+        public void Count_QU_AsAConsonantEvenWhenPreceededByAConsonant() {
             Translator translator = new Translator();
             Assert.AreEqual("aresquay", translator.Translate("square"));
         }
         [TestMethod]
-        public void TranslateManyWords()
-        {
+        public void TranslateManyWords() {
             Translator translator = new Translator();
             Assert.AreEqual("ethay ickquay ownbray oxfay", translator.Translate("the quick brown fox"));
         }
@@ -85,9 +74,14 @@ namespace _04_Pig_Latin
         [TestMethod]
         public void TranslateTwoWordsCapital() {
             Translator translator = new Translator();
-            Assert.AreEqual("eatay iepay", translator.Translate("eat pie"));
+            Assert.AreEqual("eatay Iepay", translator.Translate("eat Pie"));
         }
 
+        [TestMethod]
+        public void TranslateManyWordsCapital() {
+            Translator translator = new Translator();
+            Assert.AreEqual("Ethay ickquay Ownbray Oxfay", translator.Translate("The quick Brown Fox"));
+        }
         // retain the punctuation from the original phrase
 
     }
