@@ -2,7 +2,7 @@
     internal class Translator {
         public string Translate(string s) {
             string result = "";
-            string IsVowel = "aeioy"; //mangler QU untagelsen så derfor ikke "u" her enddu
+            string IsVowel = "aeioyAEIOY"; //mangler QU untagelsen så derfor ikke "u" her enddu
 
             //for each word in string
             foreach (string word in s.Split(' ')) {
